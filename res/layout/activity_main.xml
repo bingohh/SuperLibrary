@@ -35,8 +35,8 @@
 
             <com.sdau.gradient.GradientIconView
                 android:id="@+id/id_iconfont_chat"
-                app:bottom_icon="@drawable/chats"
-                app:top_icon="@drawable/chats_green"
+                app:bottom_icon="@drawable/home"
+                app:top_icon="@drawable/home_green"
                 android:layout_width="40dp"
                 android:layout_height="35dp" />
 

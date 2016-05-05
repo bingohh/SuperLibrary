@@ -39,8 +39,8 @@
 
     <LinearLayout
         android:id="@+id/ll_time"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:padding="2dp"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/tv_title"
@@ -48,8 +48,8 @@
 
         <TextView
             android:id="@+id/tv_nian"
-            android:layout_width="66dp"
-            android:layout_height="33dp"
+            android:layout_width="56dp"
+            android:layout_height="28dp"
             android:background="#205914"
             android:layout_gravity="center_horizontal|center_vertical"
             android:gravity="center_vertical|center_horizontal"
@@ -60,8 +60,8 @@
 
         <TextView
             android:id="@+id/tv_yue"
-            android:layout_width="66dp"
-            android:layout_height="33dp"
+            android:layout_width="56dp"
+            android:layout_height="28dp"
             android:background="#F2A215"
             android:layout_gravity="center_vertical|center_horizontal"
             android:gravity="center_vertical|center_horizontal"

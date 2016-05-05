@@ -39,7 +39,7 @@ public class ChatsFragment extends Fragment {
 	private static final String ARG_PARAM2 = "param2";
 
 	private MainActivity mMainActivity;
-	private TextView textView;
+	//private TextView textView;
 	private ListView listView;
 	List<NewsItemBean> dataList = null;
 
@@ -92,7 +92,7 @@ public class ChatsFragment extends Fragment {
 		listView = (ListView) messageLayout.findViewById(R.id.lv_main);
 		// progressBar =
 		// (ProgressBar)messageLayout.findViewById(R.id.progressBar1);
-		textView = (TextView) messageLayout.findViewById(R.id.textView1);
+		//textView = (TextView) messageLayout.findViewById(R.id.textView1);
 		mMainActivity = (MainActivity) getActivity();
 		NewsLoadAsyncTask asyncTask = new NewsLoadAsyncTask();
 		asyncTask.execute();
@@ -169,13 +169,13 @@ public class ChatsFragment extends Fragment {
 		@Override
 		protected void onPostExecute(String result) {
 			listView.setAdapter(new NewsListViewAdapter(mMainActivity, dataList));
-			textView.setText("异步操作执行结束" + result);
+			//textView.setText("异步操作执行结束" + result);
 		}
 
 		// 该方法运行在UI线程当中,并且运行在UI线程当中 可以对UI空间进行设置
 		@Override
 		protected void onPreExecute() {
-			textView.setText("开始执行异步线程");
+			//textView.setText("开始执行异步线程");
 		}
 
 		/**
