@@ -22,7 +22,7 @@
                 android:id="@+id/img_search"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 android:src="@drawable/search" />
 
             <TextView
