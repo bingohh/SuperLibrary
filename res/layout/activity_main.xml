@@ -51,31 +51,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.sdau.gradient.GradientIconView
-                android:id="@+id/id_iconfont_friend"
-                app:bottom_icon="@drawable/contacts"
-                app:top_icon="@drawable/contacts_green"
-                android:layout_width="40dp"
-                android:layout_height="35dp" />
-
-            <com.sdau.gradient.GradientTextView
-                android:id="@+id/id_contacts_tv"
-                app:bottom_text_color="@color/tab_text_gray"
-                app:text="@string/contacts"
-                app:text_size="12sp"
-                app:top_text_color="@color/tab_bg_green"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
+        
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -100,6 +76,32 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.sdau.gradient.GradientIconView
+                android:id="@+id/id_iconfont_friend"
+                app:bottom_icon="@drawable/contacts"
+                app:top_icon="@drawable/contacts_green"
+                android:layout_width="40dp"
+                android:layout_height="35dp" />
+
+            <com.sdau.gradient.GradientTextView
+                android:id="@+id/id_contacts_tv"
+                app:bottom_text_color="@color/tab_text_gray"
+                app:text="@string/contacts"
+                app:text_size="12sp"
+                app:top_text_color="@color/tab_bg_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        
 
         <LinearLayout
             android:layout_width="0dp"

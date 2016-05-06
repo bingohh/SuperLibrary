@@ -11,8 +11,8 @@
     <string name="action_card">我的银行卡</string>
     <string name="action_feed">意见反馈</string>
     <string name="chats">主页</string>
-    <string name="contacts">资源</string>
-    <string name="discover">书友</string>
+    <string name="contacts">书友</string>
+    <string name="discover">资源</string>
     <string name="me">我的</string>
     <string name="title_activity_user_login">超级图书馆</string>
 

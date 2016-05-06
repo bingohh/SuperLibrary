@@ -101,8 +101,9 @@ public class UserLoginActivity extends Activity {
 				String account = et_account.getText().toString();
 				String password = et_password.getText().toString();
 				String checkcode=et_checkcode.getText().toString();
-				if (TextUtils.isEmpty(account) || TextUtils.isEmpty(password)) {
-					Toast.makeText(getApplicationContext(), "对不起，帐号" + "或者密码不能为空", Toast.LENGTH_LONG).show();
+				if (TextUtils.isEmpty(account) || TextUtils.isEmpty(password) || TextUtils.isEmpty(checkcode)) {
+					tv_msg.setText("帐号、密码或者验证码不能为空");
+					Toast.makeText(getApplicationContext(), "帐号、密码或者验证码不能为空", Toast.LENGTH_LONG).show();
 				}else{
 					// 检查用户是否勾选了 记住密码的选项。
 					// 说明勾选框被选中了。把用户名和密码给记录下来
@@ -162,17 +163,21 @@ public class UserLoginActivity extends Activity {
 		 */
 		@Override
 		protected void onPostExecute(String html) {
-			tv_msg.setText(html);
+			
 			tv_msg.setMovementMethod(ScrollingMovementMethod.getInstance());
 			String username="";
 			Document document = Jsoup.parse(html);
-			Elements es = document.getElementsByClass("header_right_font");
-			username=es.select("font").text();
+			username = document.select(".header_right_font font").text();
+			//username=es.select("font").text();
 			if(!TextUtils.isEmpty(username)){
 				Intent intent = new Intent();
 				Toast.makeText(lActivity, username+"同学，欢迎使用本软件~", Toast.LENGTH_LONG).show();
 				intent.setClass(lActivity, MainActivity.class);
 				startActivity(intent);
+			}else{
+				String alert =document.select("#left_tab font").text();
+				Toast.makeText(lActivity, alert, Toast.LENGTH_LONG).show();
+				tv_msg.setText(alert);
 			}
 			
 		}
@@ -180,7 +185,7 @@ public class UserLoginActivity extends Activity {
 		// 该方法运行在UI线程当中,并且运行在UI线程当中 可以对UI空间进行设置
 		@Override
 		protected void onPreExecute() {
-			tv_msg.setText("开始执行异步线程");
+			tv_msg.setText("正在登录");
 		}
 
 		/**
@@ -282,7 +287,7 @@ public class UserLoginActivity extends Activity {
 		// 该方法运行在UI线程当中,并且运行在UI线程当中 可以对UI空间进行设置
 		@Override
 		protected void onPreExecute() {
-			tv_msg.setText("开始执行异步线程");
+			tv_msg.setText("获取验证码");
 		}
 
 		/**

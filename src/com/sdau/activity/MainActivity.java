@@ -15,12 +15,14 @@ import com.sdau.gradient.GradientIconView;
 import com.sdau.gradient.GradientTextView;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +31,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity
-	implements View.OnClickListener, ViewPager.OnPageChangeListener, OnFragmentInteractionListener {
+		implements View.OnClickListener, ViewPager.OnPageChangeListener, OnFragmentInteractionListener {
 
 	private ViewPager mViewPager;
 	private List<Fragment> mTabs = new ArrayList<Fragment>();
@@ -46,29 +48,27 @@ public class MainActivity extends FragmentActivity
 	private GradientTextView mTvContacts;
 	private GradientTextView mTvDiscover;
 	private GradientTextView mTvAboutMe;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		setTitle("超级图书馆");
-		ActionBar actionBar =getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(false);//禁用ActionBar左侧箭头导航功能
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(false);// 禁用ActionBar左侧箭头导航功能
 		setOverflowShowingAlways();
 		initView();
-		/*actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		Tab tab=actionBar
-				.newTab()
-				.setText("artistString")
-				.setTabListener(new TabListener<ArtistFragment>(this,"artist",ArtistFragment.class) );
-		actionBar.addTab(tab);
-		tab=actionBar
-				.newTab()
-				.setText("albumString")
-				.setTabListener(new TabListener<AlbumFragment>(this,"album",AlbumFragment.class) );
-		actionBar.addTab(tab);*/
+		/*
+		 * actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS); Tab
+		 * tab=actionBar .newTab() .setText("artistString") .setTabListener(new
+		 * TabListener<ArtistFragment>(this,"artist",ArtistFragment.class) );
+		 * actionBar.addTab(tab); tab=actionBar .newTab()
+		 * .setText("albumString") .setTabListener(new
+		 * TabListener<AlbumFragment>(this,"album",AlbumFragment.class) );
+		 * actionBar.addTab(tab);
+		 */
 	}
-	
+
 	private void initView() {
 		mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
 
@@ -111,8 +111,8 @@ public class MainActivity extends FragmentActivity
 
 	private void initFragments() {
 		mTabs.add(ChatsFragment.newInstance("", ""));
-		mTabs.add(ContactsFragment.newInstance("", ""));
 		mTabs.add(DiscoverFragment.newInstance("", ""));
+		mTabs.add(ContactsFragment.newInstance("", ""));
 		mTabs.add(AboutMeFragment.newInstance("", ""));
 
 		mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -158,29 +158,24 @@ public class MainActivity extends FragmentActivity
 		}
 	}
 
-	private void setOverflowShowingAlways()
-	{
-		try
-		{
+	private void setOverflowShowingAlways() {
+		try {
 			// true if a permanent menu key is present, false otherwise.
 			ViewConfiguration config = ViewConfiguration.get(this);
-			Field menuKeyField = ViewConfiguration.class
-					.getDeclaredField("sHasPermanentMenuKey");
+			Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
 			menuKeyField.setAccessible(true);
 			menuKeyField.setBoolean(config, false);
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public boolean onMenuOpened(int featureId, Menu menu) {
 		if (featureId == Window.FEATURE_ACTION_BAR && menu != null) {
 			if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
 				try {
-					Method m = menu.getClass().getDeclaredMethod(
-							"setOptionalIconsVisible", Boolean.TYPE);
+					Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
 					m.setAccessible(true);
 					m.invoke(menu, true);
 				} catch (Exception e) {
@@ -194,24 +189,21 @@ public class MainActivity extends FragmentActivity
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		/*MenuItem searchItem =menu.findItem(R.id.action_search);
-		searchItem.setOnActionExpandListener(new OnActionExpandListener() {
-			@Override
-			public boolean onMenuItemActionExpand(MenuItem item) {
-				// TODO Auto-generated method stub
-				Log.d("TAG", "on expand");  
-				return false;
-			}
-			@Override
-			public boolean onMenuItemActionCollapse(MenuItem item) {
-				// TODO Auto-generated method stub
-				Log.d("TAG", "on expand");  
-				return false;
-			}
-		});
-		SearchView searchView=(SearchView)searchItem.getActionView();
-		
-		return  super.onCreateOptionsMenu(menu);*/
+		/*
+		 * MenuItem searchItem =menu.findItem(R.id.action_search);
+		 * searchItem.setOnActionExpandListener(new OnActionExpandListener() {
+		 * 
+		 * @Override public boolean onMenuItemActionExpand(MenuItem item) { //
+		 * TODO Auto-generated method stub Log.d("TAG", "on expand"); return
+		 * false; }
+		 * 
+		 * @Override public boolean onMenuItemActionCollapse(MenuItem item) { //
+		 * TODO Auto-generated method stub Log.d("TAG", "on expand"); return
+		 * false; } }); SearchView
+		 * searchView=(SearchView)searchItem.getActionView();
+		 * 
+		 * return super.onCreateOptionsMenu(menu);
+		 */
 		return true;
 	}
 
@@ -221,25 +213,27 @@ public class MainActivity extends FragmentActivity
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		switch (id) {  
-	    case R.id.action_add:  
-	        Toast.makeText(this, "add", Toast.LENGTH_SHORT).show();  
-	        return true;  
-	    /*case R.id.action_search:  
-	        Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();  
-	        return true;  */
-	   /* case R.id.action_settings:  
-	        Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();  
-	        return true;  */
-	    default:  
-	        return super.onOptionsItemSelected(item);  
-	    }  
+		switch (id) {
+		case R.id.action_add:
+			Toast.makeText(this, "add", Toast.LENGTH_SHORT).show();
+			return true;
+		/*
+		 * case R.id.action_search: Toast.makeText(this, "search",
+		 * Toast.LENGTH_SHORT).show(); return true;
+		 */
+		/*
+		 * case R.id.action_settings: Toast.makeText(this, "Settings",
+		 * Toast.LENGTH_SHORT).show(); return true;
+		 */
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	@Override
 	public void onPageScrollStateChanged(int arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -257,13 +251,13 @@ public class MainActivity extends FragmentActivity
 			iconRight.setIconAlpha(positionOffset);
 			textRight.setTextViewAlpha(positionOffset);
 		}
-		
+
 	}
 
 	@Override
 	public void onPageSelected(int arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -298,9 +292,30 @@ public class MainActivity extends FragmentActivity
 		}
 	}
 
+	//屏蔽返回键
+	/*@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}*/
+
+	//返回实现home键效果
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		// super.onBackPressed();
+		Intent i = new Intent(Intent.ACTION_MAIN);
+		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		i.addCategory(Intent.CATEGORY_HOME);
+		startActivity(i);
+	}
+
 	@Override
 	public void onFragmentInteraction(Uri uri) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
