@@ -6,6 +6,7 @@ import java.util.List;
 import com.sdau.superlibrary.R;
 import com.sdau.activity.MainActivity;
 import com.sdau.activity.NewsInfoActivity;
+import com.sdau.activity.SearchBookActivity;
 import com.sdau.html.HtmlUtill;
 import com.sdau.listview.NewsItemBean;
 import com.sdau.listview.NewsListViewAdapter;
@@ -19,9 +20,11 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -42,6 +45,7 @@ public class ChatsFragment extends Fragment {
 	//private TextView textView;
 	private ListView listView;
 	List<NewsItemBean> dataList = null;
+	private ImageView searchBookImg;
 
 	// TODO: Rename and change types of parameters
 	private String mParam1;
@@ -112,6 +116,17 @@ public class ChatsFragment extends Fragment {
 				startActivity(intent);
 			}
 
+		});
+		searchBookImg=(ImageView)messageLayout.findViewById(R.id.img_search);
+		searchBookImg.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent =new Intent();
+				intent.setClass(getContext(), SearchBookActivity.class);
+				startActivity(intent);
+			}
 		});
 
 		return messageLayout;

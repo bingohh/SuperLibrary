@@ -15,5 +15,6 @@
     <string name="discover">资源</string>
     <string name="me">我的</string>
     <string name="title_activity_user_login">超级图书馆</string>
+    <string name="title_activity_search_book">馆藏查询</string>
 
 </resources>

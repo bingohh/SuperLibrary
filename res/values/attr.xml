@@ -5,18 +5,15 @@
     <attr name="color" format="color"></attr>
     <attr name="text" format="string"></attr>
     <attr name="text_size" format="dimension"></attr>
-
+<!-- 
     <declare-styleable name="ChangeColorIconWithText">
         <attr name="icon"></attr>
         <attr name="color"></attr>
         <attr name="text"></attr>
         <attr name="text_size"></attr>
-    </declare-styleable>
+    </declare-styleable> -->
     
-     
-    
-    
-    <!--  -->
+    <!-- 主界面下面的四个tab图表  -->
     <attr name="top_icon" format="reference" />  
     <attr name="bottom_icon" format="reference" />  
   
@@ -25,8 +22,7 @@
         <attr name="bottom_icon" />  
     </declare-styleable>  
   
- <!--    <attr name="text" format="string" />  
-    <attr name="text_size" format="dimension" />   -->
+ 	<!-- 主界面下面的四个tab图表 下面的文字 -->
     <attr name="top_text_color" format="color" />  
     <attr name="bottom_text_color" format="color" />  
   
@@ -36,6 +32,21 @@
         <attr name="top_text_color" />  
         <attr name="bottom_text_color" />  
     </declare-styleable>  
+    
+    <!-- 馆藏查询里面的切换tab -->
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+    </declare-styleable>
     
 
 </resources>
