@@ -1,0 +1,52 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sdau.fragment.AboutMeFragment">
+
+    <!-- TODO: Update blank com.david.wechatsample.fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <com.sdau.edittext.ClearEditText
+            android:id="@+id/et_search_simple"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext_shape"
+            android:drawableLeft="@drawable/actionbar_search_icon"
+            android:ems="10"
+            android:hint="书名/作者"
+            android:padding="10dp"
+            android:singleLine="true" >
+
+        </com.sdau.edittext.ClearEditText>
+
+        <Button
+            android:id="@+id/btn_search_simple"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/et_search_simple"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="#45C01A"
+            android:text="查询" />
+
+        <TextView
+            android:id="@+id/tv_simple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" 
+			android:singleLine="false"
+			android:layout_below="@+id/btn_search_simple"
+            android:text="TextView" />
+
+    </RelativeLayout>
+
+</FrameLayout>

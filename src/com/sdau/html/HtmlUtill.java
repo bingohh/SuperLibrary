@@ -21,6 +21,35 @@ import com.sdau.listview.NewsItemBean;
 
 public class HtmlUtill {
 	
+	public static List<NewsItemBean> getBooksList(String html){
+		List<NewsItemBean> datalist = new ArrayList<NewsItemBean>();
+		html="http://202.194.143.19/opac/openlink.php?strSearchType=title&match_flag=forward&historyCount=1&strText=android&doctype=ALL&with_ebook=on&displaypg=20&showmode=list&sort=CATA_DATE&orderby=desc&location=ALL";
+		Document document = null;
+		try {
+			document = Jsoup.connect(html).get();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		Elements es = document.getElementsByClass("book_list_info");
+		NewsItemBean item=null;
+		String date="",date_nian="",date_yr="",title="",href="";//href="";
+		for (Element e : es) {
+			//date=e.getElementsByTag("em").text();
+			//date_nian=date.substring(1, 5);
+			//date_yr=date.substring(6, date.length()-2).replace("ÔÂ", "-");
+			title=e.getElementsByTag("a").text();
+			href=e.getElementsByTag("a").attr("href");
+			item=new NewsItemBean(date_nian, date_yr,title,href);
+			//Map<String, String> map = new HashMap<String, String>();
+			//map.put("title", e.getElementsByClass("title").text());
+			/*map.put("href", "http://www.baidu.com"
+					+ e.getElementsByTag("a").attr("href"));*/
+			datalist.add(item);
+		} 
+		return datalist;
+	}
+	
 	public static List<NewsItemBean> getNewsList(String html){
 		List<NewsItemBean> datalist = new ArrayList<NewsItemBean>();
 		html="http://202.194.143.55:81/sms/opac/news/showNewsList.action?type=1&xc=4&pageSize=20";
