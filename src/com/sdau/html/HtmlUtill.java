@@ -3,8 +3,10 @@ package com.sdau.html;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,16 +23,17 @@ import com.sdau.listview.NewsItemBean;
 
 public class HtmlUtill {
 	
-	public static List<NewsItemBean> getBooksList(String html){
+	public static List<NewsItemBean> getBooksList(String bookname){
 		List<NewsItemBean> datalist = new ArrayList<NewsItemBean>();
-		html="http://202.194.143.19/opac/openlink.php?strSearchType=title&match_flag=forward&historyCount=1&strText=android&doctype=ALL&with_ebook=on&displaypg=20&showmode=list&sort=CATA_DATE&orderby=desc&location=ALL";
+		//bookname="ÄªÑÔ";
 		Document document = null;
 		try {
+			String html="http://202.194.143.19/opac/openlink.php?strSearchType=title&match_flag=forward&historyCount=1&strText="+URLEncoder.encode(bookname,"utf-8")+"&doctype=ALL&with_ebook=on&displaypg=20&showmode=list&sort=CATA_DATE&orderby=desc&location=ALL";
 			document = Jsoup.connect(html).get();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}  
+		}
 		Elements es = document.getElementsByClass("book_list_info");
 		NewsItemBean item=null;
 		String date="",date_nian="",date_yr="",title="",href="";//href="";
@@ -39,7 +42,7 @@ public class HtmlUtill {
 			//date_nian=date.substring(1, 5);
 			//date_yr=date.substring(6, date.length()-2).replace("ÔÂ", "-");
 			title=e.getElementsByTag("a").text();
-			href=e.getElementsByTag("a").attr("href");
+			href=e.getElementsByTag("a").attr("href"); 
 			item=new NewsItemBean(date_nian, date_yr,title,href);
 			//Map<String, String> map = new HashMap<String, String>();
 			//map.put("title", e.getElementsByClass("title").text());

@@ -3,6 +3,8 @@ package com.sdau.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jsoup.helper.StringUtil;
+
 import com.sdau.html.HtmlUtill;
 import com.sdau.listview.NewsItemBean;
 import com.sdau.superlibrary.R;
@@ -24,6 +26,7 @@ public class SearchSimpleFragment extends Fragment {
 	private Button btnSearch;
 	private EditText strText;
 	private TextView tvMsg;
+	private String bookname;
 	
 	List<NewsItemBean> dataList = null;
 	
@@ -38,8 +41,11 @@ public class SearchSimpleFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				BooksLoadAsyncTask asyncTask=new BooksLoadAsyncTask();
-				asyncTask.execute();
+				bookname=strText.getText().toString();
+				if(!StringUtil.isBlank(bookname)){
+					BooksLoadAsyncTask asyncTask=new BooksLoadAsyncTask();
+					asyncTask.execute(bookname);
+				}
 			}
 		});
         return searchLayout;  
@@ -56,7 +62,7 @@ public class SearchSimpleFragment extends Fragment {
 		protected String doInBackground(String... params) {
 			dataList = new ArrayList<NewsItemBean>();
 			//
-			dataList = HtmlUtill.getNewsList("");
+			dataList = HtmlUtill.getBooksList(params[0]);
 			return dataList.size() + "";
 		}
 
