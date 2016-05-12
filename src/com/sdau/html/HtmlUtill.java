@@ -3,7 +3,6 @@ package com.sdau.html;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -24,35 +23,42 @@ import com.sdau.listview.NewsItemBean;
 
 public class HtmlUtill {
 	
-	public static List<BookItemBean> getBooksList(String bookname){
+	public static String bookNum="";
+	
+	public static BookListData getBooksList(String strText){
 		List<BookItemBean> datalist = new ArrayList<BookItemBean>();
-		//bookname="ÄªÑÔ";
+		//strText="ÄªÑÔ";
 		Document document = null;
 		try {
-			String html="http://202.194.143.19/opac/openlink.php?strSearchType=title&match_flag=forward&historyCount=1&strText="+URLEncoder.encode(bookname,"utf-8")+"&doctype=ALL&with_ebook=on&displaypg=20&showmode=list&sort=CATA_DATE&orderby=desc&location=ALL";
+			String html="http://202.194.143.19/opac/openlink.php?strSearchType=title&match_flag=forward&historyCount=1&strText="+URLEncoder.encode(strText,"utf-8")+"&doctype=ALL&with_ebook=on&displaypg=20&showmode=list&sort=CATA_DATE&orderby=desc&location=ALL";
 			document = Jsoup.connect(html).get();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Elements es = document.getElementsByClass("book_list_info");
+		bookNum=document.select(".search_form strong").get(0).text();
 		BookItemBean item=null;
-		String date="",date_nian="",date_yr="",title="",href="";//href="";
+		String[] tempStr1,tempStr2;
+	//	String date_nian="",date_yr="",title="",href="";//href="";
 		for (Element e : es) {
-			//date=e.getElementsByTag("em").text();
-			//date_nian=date.substring(1, 5);
-			//date_yr=date.substring(6, date.length()-2).replace("ÔÂ", "-");
-			title=e.getElementsByTag("a").text();
-			href=e.getElementsByTag("a").attr("href"); 
-			item=new BookItemBean("aaaaa", "bbb","ccc","","ddd");
-			//Map<String, String> map = new HashMap<String, String>();
-			//map.put("title", e.getElementsByClass("title").text());
-			/*map.put("href", "http://www.baidu.com"
-					+ e.getElementsByTag("a").attr("href"));*/
+			item=new BookItemBean();
+			item.bookname=e.select("h3 a").text();
+			tempStr1=e.select("h3").text().split(" ");
+			item.snum=tempStr1[tempStr1.length-1];
+			item.booknum=e.select("p span").text();
+			e.select("p span").remove();
+			tempStr2=e.getElementsByTag("p").text().split(" ");
+			item.author="";
+			for(int i=0;i<tempStr2.length-3;i++){
+				item.author+=tempStr2[i];
+			}
+			item.chuban=tempStr2[tempStr2.length-3]; 
 			datalist.add(item);
 		} 
-		return datalist;
+		return new BookListData(bookNum,datalist);
 	}
+	
 	
 	public static List<NewsItemBean> getNewsList(String html){
 		List<NewsItemBean> datalist = new ArrayList<NewsItemBean>();
@@ -98,3 +104,6 @@ public class HtmlUtill {
 	    }  
 	}  
 }
+
+
+

@@ -17,4 +17,7 @@ public class BookItemBean {
         this.snum=snum;
         this.booknum=booknum;
     }
+    
+    public BookItemBean(){}
+    
 }
