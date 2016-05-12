@@ -46,6 +46,13 @@
 			android:singleLine="false"
 			android:layout_below="@+id/btn_search_simple"
             android:text="TextView" />
+        <ListView
+            android:id="@+id/lv_booklist"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/tv_simple"
+            android:layout_height="match_parent" >
+
+        </ListView>
 
     </RelativeLayout>
 

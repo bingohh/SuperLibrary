@@ -5,8 +5,13 @@ import java.util.List;
 
 import org.jsoup.helper.StringUtil;
 
+import com.sdau.activity.MainActivity;
+import com.sdau.activity.SearchBookActivity;
 import com.sdau.html.HtmlUtill;
+import com.sdau.listview.BookItemBean;
+import com.sdau.listview.BookListViewAdapter;
 import com.sdau.listview.NewsItemBean;
+import com.sdau.listview.NewsListViewAdapter;
 import com.sdau.superlibrary.R;
 
 import android.os.AsyncTask;
@@ -18,6 +23,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -28,12 +34,17 @@ public class SearchSimpleFragment extends Fragment {
 	private TextView tvMsg;
 	private String bookname;
 	
-	List<NewsItemBean> dataList = null;
+	private SearchBookActivity sBookActivity;
+	private ListView listView;
+	List<BookItemBean> dataList = null;
 	
     @Override  
     public View onCreateView(LayoutInflater inflater, ViewGroup container,  
             Bundle savedInstanceState) {  
     	View searchLayout = inflater.inflate(R.layout.fragment_search_simple, container, false);
+    	sBookActivity = (SearchBookActivity)getActivity();
+    	listView = (ListView) searchLayout.findViewById(R.id.lv_booklist);
+    	
     	btnSearch=(Button)searchLayout.findViewById(R.id.btn_search_simple);
     	strText=(EditText)searchLayout.findViewById(R.id.et_search_simple);
     	tvMsg=(TextView)searchLayout.findViewById(R.id.tv_simple);	
@@ -60,7 +71,7 @@ public class SearchSimpleFragment extends Fragment {
 		 */
 		@Override
 		protected String doInBackground(String... params) {
-			dataList = new ArrayList<NewsItemBean>();
+			dataList = new ArrayList<BookItemBean>();
 			//
 			dataList = HtmlUtill.getBooksList(params[0]);
 			return dataList.size() + "";
@@ -75,6 +86,7 @@ public class SearchSimpleFragment extends Fragment {
 			//listView.setAdapter(new NewsListViewAdapter(mMainActivity, dataList));
 			//textView.setText("异步操作执行结束" + result);
 			tvMsg.setText(result);
+			listView.setAdapter(new BookListViewAdapter(sBookActivity, dataList));
 		}
 
 		// 该方法运行在UI线程当中,并且运行在UI线程当中 可以对UI空间进行设置

@@ -17,14 +17,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.sdau.listview.BookItemBean;
 import com.sdau.listview.NewsItemBean;
 
 
 
 public class HtmlUtill {
 	
-	public static List<NewsItemBean> getBooksList(String bookname){
-		List<NewsItemBean> datalist = new ArrayList<NewsItemBean>();
+	public static List<BookItemBean> getBooksList(String bookname){
+		List<BookItemBean> datalist = new ArrayList<BookItemBean>();
 		//bookname="ÄªÑÔ";
 		Document document = null;
 		try {
@@ -35,7 +36,7 @@ public class HtmlUtill {
 			e.printStackTrace();
 		}
 		Elements es = document.getElementsByClass("book_list_info");
-		NewsItemBean item=null;
+		BookItemBean item=null;
 		String date="",date_nian="",date_yr="",title="",href="";//href="";
 		for (Element e : es) {
 			//date=e.getElementsByTag("em").text();
@@ -43,7 +44,7 @@ public class HtmlUtill {
 			//date_yr=date.substring(6, date.length()-2).replace("ÔÂ", "-");
 			title=e.getElementsByTag("a").text();
 			href=e.getElementsByTag("a").attr("href"); 
-			item=new NewsItemBean(date_nian, date_yr,title,href);
+			item=new BookItemBean("aaaaa", "bbb","ccc","","ddd");
 			//Map<String, String> map = new HashMap<String, String>();
 			//map.put("title", e.getElementsByClass("title").text());
 			/*map.put("href", "http://www.baidu.com"

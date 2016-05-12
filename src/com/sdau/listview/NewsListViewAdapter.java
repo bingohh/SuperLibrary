@@ -96,7 +96,7 @@ public class NewsListViewAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             // 由于我们只需要将XML转化为View，并不涉及到具体的布局，所以第二个参数通常设置为null
-            convertView = mLayoutInflater.inflate(R.layout.list_item, null);
+            convertView = mLayoutInflater.inflate(R.layout.news_list_item, null);
             holder.nian = (TextView) convertView.findViewById(R.id.tv_nian);
             holder.yue = (TextView) convertView.findViewById(R.id.tv_yue);
             holder.title = (TextView) convertView.findViewById(R.id.tv_title);

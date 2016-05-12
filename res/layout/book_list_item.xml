@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
+    android:padding="0dp" >
+
+    <TextView
+        android:id="@+id/tv_bookname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tv_bookname_shape"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:text="酩酊国"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_book"
+        android:layout_width="fill_parent"
+        android:layout_height="84dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/tv_bookname"
+        android:orientation="vertical"
+        android:padding="2dp" >
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="start"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="10dp"
+            android:text="作者：莫言"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:typeface="serif" />
+
+        <TextView
+            android:id="@+id/tv_chuban"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="10dp"
+            android:text="出版：1995/作家出版社"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:typeface="serif" />
+        <TextView
+            android:id="@+id/tv_snum"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="10dp"
+            android:text="书号：I207.42/L353"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:typeface="serif" />
+        <TextView
+            android:id="@+id/tv_booknum"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="10dp"
+            android:text="馆藏：5 可借：5"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:typeface="serif" />
+        
+    </LinearLayout>
+
+</RelativeLayout>
