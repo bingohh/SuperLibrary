@@ -16,8 +16,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.sdau.listview.BookItemBean;
-import com.sdau.listview.NewsItemBean;
+import com.sdau.bean.BookItemBean;
+import com.sdau.bean.BookListData;
+import com.sdau.bean.NewsItemBean;
 
 
 
@@ -44,6 +45,7 @@ public class HtmlUtill {
 		for (Element e : es) {
 			item=new BookItemBean();
 			item.bookname=e.select("h3 a").text();
+			item.href=e.select("h3 a").attr("href");
 			tempStr1=e.select("h3").text().split(" ");
 			item.snum=tempStr1[tempStr1.length-1];
 			item.booknum=e.select("p span").text();
@@ -58,7 +60,6 @@ public class HtmlUtill {
 		} 
 		return new BookListData(bookNum,datalist);
 	}
-	
 	
 	public static List<NewsItemBean> getNewsList(String html){
 		List<NewsItemBean> datalist = new ArrayList<NewsItemBean>();

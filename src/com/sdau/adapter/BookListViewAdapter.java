@@ -1,4 +1,4 @@
-package com.sdau.listview;
+package com.sdau.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import com.sdau.bean.BookItemBean;
 import com.sdau.superlibrary.R;
 
 public class BookListViewAdapter extends BaseAdapter {
@@ -23,8 +24,7 @@ public class BookListViewAdapter extends BaseAdapter {
         mDataList = list;
     }
 
-    //获取数据量
-    @Override
+    //获取数据�?    @Override
     public int getCount() {
         return mDataList.size();
     }
@@ -43,11 +43,11 @@ public class BookListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // 文艺式 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        // 文艺�?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            // 由于我们只需要将XML转化为View，并不涉及到具体的布局，所以第二个参数通常设置为null
+            // 由于我们只需要将XML转化为View，并不涉及到具体的布�?���?��第二个参数�?常设置为null
             convertView = mLayoutInflater.inflate(R.layout.book_list_item, null);
             holder.bookname = (TextView) convertView.findViewById(R.id.tv_bookname);
             holder.author = (TextView) convertView.findViewById(R.id.tv_author);
@@ -60,14 +60,14 @@ public class BookListViewAdapter extends BaseAdapter {
         }
         // 取出bean对象
         BookItemBean bean = mDataList.get(position);
-        // 设置控件的数据
+        // 设置控件的数�?        
         holder.bookname.setText(bean.bookname);
         holder.author.setText(bean.author);
         holder.chuban.setText(bean.chuban);
         holder.snum.setText(bean.snum);
         holder.booknum.setText(bean.booknum);
         return convertView;
-        // 文艺式 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>16325820
+        // 文艺�?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>16325820
     }
 
     // ViewHolder用于缓存控件

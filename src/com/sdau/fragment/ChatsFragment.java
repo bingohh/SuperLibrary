@@ -7,9 +7,9 @@ import com.sdau.superlibrary.R;
 import com.sdau.activity.MainActivity;
 import com.sdau.activity.NewsInfoActivity;
 import com.sdau.activity.SearchBookActivity;
+import com.sdau.adapter.NewsListViewAdapter;
+import com.sdau.bean.NewsItemBean;
 import com.sdau.html.HtmlUtill;
-import com.sdau.listview.NewsItemBean;
-import com.sdau.listview.NewsListViewAdapter;
 
 import android.app.Activity;
 import android.content.Intent;

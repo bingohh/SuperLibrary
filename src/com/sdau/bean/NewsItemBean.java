@@ -1,4 +1,4 @@
-package com.sdau.listview;
+package com.sdau.bean;
 
 
 public class NewsItemBean {

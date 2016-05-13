@@ -1,4 +1,4 @@
-package com.sdau.listview;
+package com.sdau.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import com.sdau.bean.NewsItemBean;
 import com.sdau.superlibrary.R;
 
 public class NewsListViewAdapter extends BaseAdapter {
@@ -23,8 +24,7 @@ public class NewsListViewAdapter extends BaseAdapter {
         mDataList = list;
     }
 
-    //获取数据量
-    @Override
+    //获取数据�?    @Override
     public int getCount() {
         return mDataList.size();
     }
@@ -43,34 +43,34 @@ public class NewsListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-   /*     // 逗比式 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+   /*     // 逗比�?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         // 获取纳秒时间 更加精确
         long start = System.nanoTime();
-        // 由于我们只需要将XML转化为View，并不涉及到具体的布局，所以第二个参数通常设置为null
+        // 由于我们只需要将XML转化为View，并不涉及到具体的布�?���?��第二个参数�?常设置为null
         View view = mLayoutInflater.inflate(R.layout.listview_item, null);
-        // 实例化控件
+        // 实例化控�?
         ImageView itemImage = (ImageView) view.findViewById(R.id.iv_image);
         TextView itemTitle = (TextView) view.findViewById(R.id.tv_title);
         TextView itemContent = (TextView) view.findViewById(R.id.tv_content);
         // 取出bean对象
         ItemBean bean = mDataList.get(position);
-        // 设置控件的数据
+        // 设置控件的数�?
         itemImage.setImageResource(bean.itemImageResid);
         itemTitle.setText(bean.itemTitle);
         itemContent.setText(bean.itemContent);
         long end = System.nanoTime();
         long dValue = end - start;
         mSumTime += dValue;
-        // 输出每次getView消耗的时间和
+        // 输出每次getView消�?的时间和
         Log.d("xys", String.valueOf(mSumTime));
         return view;
-        // 逗比式 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>24409529
+        // 逗比�?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>24409529
 */
-        // 普通式 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        // 普�?�?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         // 获取纳秒时间 更加精确
 //        long start = System.nanoTime();
 //        if (convertView == null) {
-        // 由于我们只需要将XML转化为View，并不涉及到具体的布局，所以第二个参数通常设置为null
+        // 由于我们只需要将XML转化为View，并不涉及到具体的布�?���?��第二个参数�?常设置为null
 //            convertView = mLayoutInflater.inflate(R.layout.item, null);
 //        }
 //        ImageView itemImage = (ImageView) convertView.findViewById(R.id.iv_image);
@@ -78,24 +78,24 @@ public class NewsListViewAdapter extends BaseAdapter {
 //        TextView itemContent = (TextView) convertView.findViewById(R.id.tv_content);
 //        // 取出bean对象
 //        ItemBean bean = mDataList.get(position);
-        // 设置控件的数据
+        // 设置控件的数�?
 //        itemImage.setImageResource(bean.itemImageResid);
 //        itemTitle.setText(bean.itemTitle);
 //        itemContent.setText(bean.itemContent);
 //        long end = System.nanoTime();
 //        long dValue = end - start;
 //        mSumTime += dValue;
-        // 输出每次getView消耗的时间和
+        // 输出每次getView消�?的时间和
 //        Log.d("xys", String.valueOf(mSumTime));
 //        return convertView;
-        // 普通式 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>19271161
+        // 普�?�?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>19271161
 
 
-        // 文艺式 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        // 文艺�?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            // 由于我们只需要将XML转化为View，并不涉及到具体的布局，所以第二个参数通常设置为null
+            // 由于我们只需要将XML转化为View，并不涉及到具体的布�?���?��第二个参数�?常设置为null
             convertView = mLayoutInflater.inflate(R.layout.news_list_item, null);
             holder.nian = (TextView) convertView.findViewById(R.id.tv_nian);
             holder.yue = (TextView) convertView.findViewById(R.id.tv_yue);
@@ -106,12 +106,11 @@ public class NewsListViewAdapter extends BaseAdapter {
         }
         // 取出bean对象
         NewsItemBean bean = mDataList.get(position);
-        // 设置控件的数据
-        holder.nian.setText(bean.itemNian);
+        // 设置控件的数�?        holder.nian.setText(bean.itemNian);
         holder.yue.setText(bean.itemYue);
         holder.title.setText(bean.itemTitle);
         return convertView;
-        // 文艺式 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>16325820
+        // 文艺�?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>16325820
     }
 
     // ViewHolder用于缓存控件

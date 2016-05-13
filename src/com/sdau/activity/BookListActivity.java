@@ -3,21 +3,26 @@ package com.sdau.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sdau.html.BookListData;
+import com.sdau.adapter.BookListViewAdapter;
+import com.sdau.bean.BookItemBean;
+import com.sdau.bean.BookListData;
 import com.sdau.html.HtmlUtill;
-import com.sdau.listview.BookItemBean;
-import com.sdau.listview.BookListViewAdapter;
 import com.sdau.superlibrary.R;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class BookListActivity extends Activity {
 
@@ -47,6 +52,20 @@ public class BookListActivity extends Activity {
 		
 		BooksLoadAsyncTask asyncTask=new BooksLoadAsyncTask();
 		asyncTask.execute(strText);
+		
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				intent.setClass(mBookListActivity, BookInfoActivity.class);
+				Log.d("TAG", dataList.get(position).href);
+				intent.putExtra("href", dataList.get(position).href);
+				startActivity(intent);
+			}
+
+		});
 	}
 
 	@Override

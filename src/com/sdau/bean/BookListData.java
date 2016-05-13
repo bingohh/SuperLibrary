@@ -1,8 +1,6 @@
-package com.sdau.html;
+package com.sdau.bean;
 
 import java.util.List;
-
-import com.sdau.listview.BookItemBean;
 
 public class BookListData{
 	private String bookNum;

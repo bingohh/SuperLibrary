@@ -8,11 +8,11 @@ import org.jsoup.helper.StringUtil;
 import com.sdau.activity.BookListActivity;
 import com.sdau.activity.MainActivity;
 import com.sdau.activity.SearchBookActivity;
+import com.sdau.adapter.BookListViewAdapter;
+import com.sdau.adapter.NewsListViewAdapter;
+import com.sdau.bean.BookItemBean;
+import com.sdau.bean.NewsItemBean;
 import com.sdau.html.HtmlUtill;
-import com.sdau.listview.BookItemBean;
-import com.sdau.listview.BookListViewAdapter;
-import com.sdau.listview.NewsItemBean;
-import com.sdau.listview.NewsListViewAdapter;
 import com.sdau.superlibrary.R;
 
 import android.content.Intent;
@@ -53,12 +53,12 @@ public class SearchSimpleFragment extends Fragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String strText=etSearchStr.getText().toString();
-				//if(!StringUtil.isBlank(strText)){
+				if(!StringUtil.isBlank(strText)){
 					Intent intent =new Intent();
 					intent.setClass(getContext(), BookListActivity.class);
-					intent.putExtra("strText", "д╙ят");
+					intent.putExtra("strText", strText);
 					startActivity(intent);
-				//}
+				}
 			}
 		});
         return searchLayout;  

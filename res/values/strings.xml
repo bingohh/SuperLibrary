@@ -17,5 +17,6 @@
     <string name="title_activity_user_login">超级图书馆</string>
     <string name="title_activity_search_book">馆藏查询</string>
     <string name="title_activity_book_list">BookListActivity</string>
+    <string name="title_activity_book_info">BookInfoActivity</string>
 
 </resources>

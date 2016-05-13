@@ -41,6 +41,10 @@
             android:label="@string/title_activity_book_list"
             android:theme="@style/titlebarstyle" >
         </activity>
+        <activity
+            android:name="com.sdau.activity.BookInfoActivity"
+            android:label="@string/title_activity_book_info" >
+        </activity>
     </application>
 
 </manifest>
