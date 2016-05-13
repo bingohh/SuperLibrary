@@ -25,7 +25,6 @@
         android:layout_height="84dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/tv_bookname"
-        android:layout_marginBottom="15dp"
         android:background="#FFFFFF"
         android:orientation="vertical"
         android:padding="2dp" >
@@ -150,10 +149,38 @@
 
         </LinearLayout>
 
-        
-        
-        
-        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_book" >
+
+        <Button
+            android:id="@+id/button1"
+            style="@drawable/btn_bookitem"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bookitem"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bookitem"
+            android:text="加书单" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bookitem"
+            android:text="Button" />
+
     </LinearLayout>
 
 </RelativeLayout>
