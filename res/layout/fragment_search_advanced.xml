@@ -21,7 +21,7 @@
             android:paddingTop="5dp" >
 
             <TextView
-                android:id="@+id/TextView06"
+                android:id="@+id/tv_advanced_bookname"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
@@ -30,13 +30,13 @@
                 android:textSize="17sp" />
 
             <com.sdau.edittext.ClearEditText
-                android:id="@+id/ClearEditText06"
+                android:id="@+id/cet_advanced_bookname"
                 style="?android:attr/textViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:ems="10"
-                android:hint="书名/作者"
+                
                 android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="10dp"
@@ -55,7 +55,7 @@
             android:paddingTop="5dp" >
 
             <TextView
-                android:id="@+id/TextView05"
+                android:id="@+id/tv_advanced_bookauthor"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
@@ -64,13 +64,13 @@
                 android:textSize="17sp" />
 
             <com.sdau.edittext.ClearEditText
-                android:id="@+id/ClearEditText05"
+                android:id="@+id/cet_advanced_bookauthor"
                 style="?android:attr/textViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:ems="10"
-                android:hint="书名/作者"
+                
                 android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="10dp"
@@ -89,7 +89,7 @@
             android:paddingTop="5dp" >
 
             <TextView
-                android:id="@+id/TextView03"
+                android:id="@+id/tv_advanced_bookchubanshe"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
@@ -98,13 +98,13 @@
                 android:textSize="17sp" />
 
             <com.sdau.edittext.ClearEditText
-                android:id="@+id/ClearEditText03"
+                android:id="@+id/cet_advanced_bookchubanshe"
                 style="?android:attr/textViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:ems="10"
-                android:hint="书名/作者"
+                
                 android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="10dp"
@@ -123,7 +123,7 @@
             android:paddingTop="5dp" >
 
             <TextView
-                android:id="@+id/TextView02"
+                android:id="@+id/tv_advanced_bookisbn"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
@@ -132,13 +132,13 @@
                 android:textSize="17sp" />
 
             <com.sdau.edittext.ClearEditText
-                android:id="@+id/ClearEditText02"
+                android:id="@+id/cet_advanced_bookisbn"
                 style="?android:attr/textViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:ems="10"
-                android:hint="书名/作者"
+                
                 android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="10dp"
@@ -157,7 +157,7 @@
             android:paddingTop="5dp" >
 
             <TextView
-                android:id="@+id/TextView01"
+                android:id="@+id/tv_advanced_callno"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
@@ -166,13 +166,13 @@
                 android:textSize="17sp" />
 
             <com.sdau.edittext.ClearEditText
-                android:id="@+id/ClearEditText01"
+                android:id="@+id/cet_advanced_callno"
                 style="?android:attr/textViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:ems="10"
-                android:hint="书名/作者"
+                
                 android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="10dp"
@@ -184,40 +184,7 @@
             </com.sdau.edittext.ClearEditText>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/tv_bookname_shape"
-            android:paddingBottom="5dp"
-            android:paddingLeft="0dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp" >
-
-            <TextView
-                android:id="@+id/TextView04"
-                android:layout_width="65dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:gravity="right"
-                android:text="作者"
-                android:textSize="17sp" />
-
-            <com.sdau.edittext.ClearEditText
-                android:id="@+id/ClearEditText04"
-                style="?android:attr/textViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:ems="10"
-                android:hint="书名/作者"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="10dp"
-                android:paddingTop="10dp"
-                android:singleLine="true"
-                android:textSize="16sp" />
-
-        </LinearLayout>
+       
 
         <Button
             android:id="@+id/btn_search_advanced"
@@ -227,7 +194,7 @@
             android:layout_below="@+id/et_search_advanced"
             android:layout_gravity="right"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="#45C01A"
             android:text="查询" />
 

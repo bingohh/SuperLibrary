@@ -48,11 +48,12 @@ public class BookListActivity extends Activity {
 		tv_searchText=(TextView)findViewById(R.id.tv_searchStr);
 		listView = (ListView)findViewById(R.id.lv_booklist);
 		
+		String html=getIntent().getStringExtra("html");
 		String strText=getIntent().getStringExtra("strText");
-		tv_searchText.setText("¹Ø¼ü´Ê£º"+strText);
+		tv_searchText.setText(strText);
 		
 		BooksLoadAsyncTask asyncTask=new BooksLoadAsyncTask();
-		asyncTask.execute(strText);
+		asyncTask.execute(html);
 		
 		listView.setOnItemClickListener(new OnItemClickListener() {
 

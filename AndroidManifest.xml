@@ -26,15 +26,16 @@
         <activity
             android:name="com.sdau.activity.UserLoginActivity"
             android:label="@string/title_activity_user_login" >
-        </activity>
-        <activity
-            android:name="com.sdau.activity.SearchBookActivity"
-            android:label="@string/title_activity_search_book" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sdau.activity.SearchBookActivity"
+            android:label="@string/title_activity_search_book" >
+            
         </activity>
         <activity
             android:name="com.sdau.activity.BookListActivity"

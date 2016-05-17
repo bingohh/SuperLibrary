@@ -137,14 +137,14 @@ public class HtmlUtill {
 	}
 
 	// 查询书目列表
-	public static BookListData getBooksList(String strText) {
+	public static BookListData getBooksList(String html) {
 		List<BookItemBean> datalist = new ArrayList<BookItemBean>();
 		// strText="莫言";
 		Document document = null;
 		try {
-			String html = "http://202.194.143.19/opac/openlink.php?strSearchType=title&match_flag=forward&historyCount=1&strText="
+			/*String html = "http://202.194.143.19/opac/openlink.php?strSearchType=title&match_flag=forward&historyCount=1&strText="
 					+ URLEncoder.encode(strText, "utf-8")
-					+ "&doctype=ALL&with_ebook=on&displaypg=20&showmode=list&sort=CATA_DATE&orderby=desc&location=ALL";
+					+ "&doctype=ALL&with_ebook=on&displaypg=20&showmode=list&sort=CATA_DATE&orderby=desc&location=ALL";*/
 			document = Jsoup.connect(html).get();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
