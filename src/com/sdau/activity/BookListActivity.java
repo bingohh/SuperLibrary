@@ -6,6 +6,7 @@ import java.util.List;
 import com.sdau.adapter.BookListViewAdapter;
 import com.sdau.bean.BookItemBean;
 import com.sdau.bean.BookListData;
+import com.sdau.html.HtmlUrl;
 import com.sdau.html.HtmlUtill;
 import com.sdau.superlibrary.R;
 
@@ -61,7 +62,7 @@ public class BookListActivity extends Activity {
 				Intent intent = new Intent();
 				intent.setClass(mBookListActivity, BookInfoActivity.class);
 				Log.d("TAG", dataList.get(position).href);
-				intent.putExtra("href", dataList.get(position).href);
+				intent.putExtra("href", HtmlUrl.WebRoot+dataList.get(position).href);
 				startActivity(intent);
 			}
 

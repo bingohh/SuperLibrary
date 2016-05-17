@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:descendantFocusability= "blocksDescendants"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginTop="5dp"
@@ -22,7 +23,7 @@
     <LinearLayout
         android:id="@+id/ll_book"
         android:layout_width="fill_parent"
-        android:layout_height="84dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/tv_bookname"
         android:background="#FFFFFF"
@@ -49,7 +50,7 @@
             <TextView
                 android:id="@+id/tv_author"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:gravity="left|center_vertical"
                 android:text="莫言"
                 android:textColor="@android:color/darker_gray"
@@ -76,9 +77,9 @@
                 android:typeface="serif" />
 
             <TextView
-                android:id="@+id/tv_chuban"
+                android:id="@+id/tv_bookinfo_chuban"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:gravity="left|center_vertical"
                 android:text="1995/作家出版社"
@@ -108,7 +109,7 @@
             <TextView
                 android:id="@+id/tv_snum"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:gravity="left|center_vertical"
                 android:text="I207.42/L353"
@@ -138,7 +139,7 @@
             <TextView
                 android:id="@+id/tv_booknum"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:gravity="left|center_vertical"
                 android:text="馆藏：5 可借：5"
@@ -154,21 +155,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_book" >
+        android:layout_below="@+id/ll_book"
+        android:layout_marginBottom="15dp" >
 
         <Button
             android:id="@+id/button1"
             style="@drawable/btn_bookitem"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:focusable = "false"
             android:layout_weight="1"
             android:background="@drawable/btn_bookitem"
-            android:text="Button" />
+            android:text="馆藏" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:focusable = "false"
             android:layout_weight="1"
             android:background="@drawable/btn_bookitem"
             android:text="加书单" />
@@ -177,9 +181,10 @@
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:focusable = "false"
             android:layout_weight="1"
             android:background="@drawable/btn_bookitem"
-            android:text="Button" />
+            android:text="评论" />
 
     </LinearLayout>
 

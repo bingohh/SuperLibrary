@@ -221,7 +221,7 @@ public class UserLoginActivity extends Activity {
 				e.printStackTrace();
 			}
 			COOKIE = ((AbstractHttpClient) client).getCookieStore().getCookies().get(0).getValue();
-			Log.d("TAG", "COOKIE:"+COOKIE);
+			//Log.d("TAG", "COOKIE:"+COOKIE);
 			byte[] bytes = null;
 			try {
 				bytes = EntityUtils.toByteArray(httpResponse.getEntity());
