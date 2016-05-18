@@ -55,17 +55,29 @@ public class SearchAdvancedFragment extends Fragment {
 				String strBookpublisher=cet_bookchubanshe.getText().toString();
 				String strBookisbn=cet_bookisbn.getText().toString();
 				String strBookcallno=cet_bookcallno.getText().toString();
-				String html=String.format("http://202.194.143.19/opac/openlink.php?title=%s&publisher=%s&author=%s&isbn=%s&series=&callno=%s&keyword=&year=&doctype=ALL&lang_code=ALL&displaypg=20&showmode=list&sort=CATA_DATE&orderby=desc&location=ALL&with_ebook=on"
-									, strBookname,strBookpublisher,strBookauthor,strBookisbn,strBookcallno);
-				if(StringUtil.isBlank(strBookname)||StringUtil.isBlank(strBookauthor)||StringUtil.isBlank(strBookpublisher)||StringUtil.isBlank(strBookisbn)||StringUtil.isBlank(strBookcallno)){
-					Intent intent =new Intent();
-					intent.setClass(getContext(), BookListActivity.class);
-					intent.putExtra("html", html);
-					intent.putExtra("strText", "高级检索");
-					startActivity(intent);
-				}else{
-					//Toast.makeText(, text, duration)
+				String html="";
+				try {
+					html = String.format("http://202.194.143.19/opac/openlink.php?title=%s&publisher=%s&author=%s&isbn=%s&series=&callno=%s&keyword=&year=&doctype=ALL&lang_code=ALL&displaypg=20&showmode=list&sort=CATA_DATE&orderby=desc&location=ALL&with_ebook=on"
+										,URLEncoder.encode(strBookname, "utf-8")
+										,URLEncoder.encode(strBookpublisher, "utf-8")
+										,URLEncoder.encode(strBookauthor, "utf-8")
+										,URLEncoder.encode(strBookisbn, "utf-8")
+										,URLEncoder.encode(strBookcallno, "utf-8"));
+					if(StringUtil.isBlank(strBookname)||StringUtil.isBlank(strBookauthor)||StringUtil.isBlank(strBookpublisher)||StringUtil.isBlank(strBookisbn)||StringUtil.isBlank(strBookcallno)){
+						Intent intent =new Intent();
+						intent.setClass(getContext(), BookListActivity.class);
+						intent.putExtra("html", html);
+						intent.putExtra("strText", "高级检索");
+						startActivity(intent);
+					}else{
+						//Toast.makeText(, text, duration)
+					}
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					Toast.makeText(getContext(), "字符转换出错", Toast.LENGTH_SHORT).show();
 				}
+				
 			}
 		});
 		return searchLayout;

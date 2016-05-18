@@ -29,6 +29,27 @@ import android.graphics.BitmapFactory;
 public class HtmlUtill {
 
 	public static String bookNum = "";
+	
+	public static List<String> getHotSearch(){
+		List<String> hotSearchs=new ArrayList<String>();
+		Document document = null;
+		String href="http://202.194.143.19/opac/";
+		try {
+			document = Jsoup.connect(href).get();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Elements hotStrEles=document.select("#topten a");
+		if(hotStrEles.size()>0){
+			for (Element e : hotStrEles) { 
+				hotSearchs.add(e.text());
+			}
+			return hotSearchs;
+		}else{
+			return null;
+		}
+	}
 
 	public static BookInfoBean getBookInfo(String href) {
 		// TODO Auto-generated method stub
@@ -151,27 +172,32 @@ public class HtmlUtill {
 			e.printStackTrace();
 		}
 		Elements es = document.getElementsByClass("book_list_info");
-		bookNum = document.select(".search_form strong").get(0).text();
-		BookItemBean item = null;
-		String[] tempStr1, tempStr2;
-		// String date_nian="",date_yr="",title="",href="";//href="";
-		for (Element e : es) {
-			item = new BookItemBean();
-			item.bookname = e.select("h3 a").text();
-			item.href = e.select("h3 a").attr("href");
-			tempStr1 = e.select("h3").text().split(" ");
-			item.snum = tempStr1[tempStr1.length - 1];
-			item.booknum = e.select("p span").text();
-			e.select("p span").remove();
-			tempStr2 = e.getElementsByTag("p").text().split(" ");
-			item.author = "";
-			for (int i = 0; i < tempStr2.length - 3; i++) {
-				item.author += tempStr2[i];
+		if(es.size()>0){
+			bookNum = document.select(".search_form strong").get(0).text();
+			BookItemBean item = null;
+			String[] tempStr1, tempStr2;
+			// String date_nian="",date_yr="",title="",href="";//href="";
+			for (Element e : es) {
+				item = new BookItemBean();
+				item.bookname = e.select("h3 a").text();
+				item.href = e.select("h3 a").attr("href");
+				tempStr1 = e.select("h3").text().split(" ");
+				item.snum = tempStr1[tempStr1.length - 1];
+				item.booknum = e.select("p span").text();
+				e.select("p span").remove();
+				tempStr2 = e.getElementsByTag("p").text().split(" ");
+				item.author = "";
+				for (int i = 0; i < tempStr2.length - 3; i++) {
+					item.author += tempStr2[i];
+				}
+				item.chuban = tempStr2[tempStr2.length - 3];
+				datalist.add(item);
 			}
-			item.chuban = tempStr2[tempStr2.length - 3];
-			datalist.add(item);
+			return new BookListData(bookNum, datalist);
+		}else{
+			return null;
 		}
-		return new BookListData(bookNum, datalist);
+		
 	}
 
 	// 通知公告列表

@@ -23,6 +23,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class BookListActivity extends Activity {
@@ -113,9 +114,15 @@ public class BookListActivity extends Activity {
 			//textView.setText("异步操作执行结束" + result);
 			//tvMsg.setText(result);
 			//dataList = new ArrayList<BookItemBean>();
-			dataList = booklistdata.getBookList();
-			tv_booknum.setText("共查询到"+booklistdata.getBookNum()+"本图书");
-			listView.setAdapter(new BookListViewAdapter(mBookListActivity, dataList));
+			if(booklistdata!=null){
+				dataList = booklistdata.getBookList();
+				tv_booknum.setText("共查询到"+booklistdata.getBookNum()+"本图书");
+				listView.setAdapter(new BookListViewAdapter(mBookListActivity, dataList));
+			}else{
+				Toast.makeText(mBookListActivity, "未查找到您想找的图书~~~", Toast.LENGTH_SHORT).show();
+				mBookListActivity.finish();
+			}
+			
 		}
 
 		// 该方法运行在UI线程当中,并且运行在UI线程当中 可以对UI空间进行设置
