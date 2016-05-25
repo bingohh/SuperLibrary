@@ -10,7 +10,7 @@ import com.sdau.superlibrary.R;
 import com.sdau.activity.MainActivity;
 import com.sdau.activity.NewsInfoActivity;
 import com.sdau.activity.UserLoginActivity;
-import com.sdau.okhttp.PersistentCookieStore;
+import com.sdau.httpclient.PersistentCookieStore;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -92,8 +92,8 @@ public class AboutMeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
     	View aboutMeLayout = inflater.inflate(R.layout.fragment_about_me, container, false);
-    	user_logo=(ImageView)aboutMeLayout.findViewById(R.id.user_logo_img);
-    	user_logo.setOnClickListener(new OnClickListener() {
+    	//user_logo=(ImageView)aboutMeLayout.findViewById(R.id.user_logo_img);
+    	/*user_logo.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -103,7 +103,7 @@ public class AboutMeFragment extends Fragment {
 				startActivity(intent);
 				
 			}
-		});
+		});*/
     	/*btn1=(Button)aboutMeLayout.findViewById(R.id.button1);
         img1=(ImageView)aboutMeLayout.findViewById(R.id.imageView1);
         tv1=(TextView)aboutMeLayout.findViewById(R.id.textView1);

@@ -10,4 +10,7 @@
     <color name="tab_text_gray">#999999</color>
     
     <color name="background_tab_pressed">#6633B5E5</color>
+    
+    <color name="dark">#FF222222</color>
+    <color name="light">#FFEEEEEE</color>
 </resources>

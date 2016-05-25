@@ -1,7 +1,6 @@
 package com.sdau.activity;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.sdau.fragment.SearchAdvancedFragment;
@@ -19,7 +18,6 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
 public class SearchBookActivity extends FragmentActivity {
@@ -169,35 +167,5 @@ public class SearchBookActivity extends FragmentActivity {
 		}
 	}
 	
-	/*@Override
-	public boolean onTouchEvent(MotionEvent event)
-	{
-		// TODO Auto-generated method stub
-		for ( MyOntouchListener listener : touchListeners )
-		{
-			listener.onTouchEvent( event );
-		}
-		return super.onTouchEvent( event );
-	}
-	
-	private ArrayList<MyOntouchListener> touchListeners = new ArrayList<SearchBookActivity.MyOntouchListener>();
-
-
-	public void registerListener(MyOntouchListener listener)
-	{
-		touchListeners.add( listener );
-	}
-
-
-	public void unRegisterListener(MyOntouchListener listener)
-	{
-		touchListeners.remove( listener );
-	}
-
-	public interface MyOntouchListener
-	{
-		public void onTouchEvent(MotionEvent event);
-	}
-	*/
 	
 }

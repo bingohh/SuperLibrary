@@ -155,7 +155,7 @@ public class ChatsFragment extends Fragment {
 		mListener = null;
 	}
 
-	class NewsLoadAsyncTask extends AsyncTask<String, Integer, List<NewsItemBean>> {
+	class NewsLoadAsyncTask extends AsyncTask<String, Integer, String> {
 
 		/*
 		 * public NewsLoadAsyncTask(MainActivity mMainActivity,ListView
@@ -170,11 +170,11 @@ public class ChatsFragment extends Fragment {
 		 * 但是可以调用publishProgress方法触发onProgressUpdate对UI进行操作
 		 */
 		@Override
-		protected List<NewsItemBean> doInBackground(String... params) {
-			//dataList = new ArrayList<NewsItemBean>();
+		protected String doInBackground(String... params) {
+			dataList = new ArrayList<NewsItemBean>();
 			//
 			dataList = HtmlUtill.getNewsList("");
-			return dataList;
+			return dataList.size() + "";
 		}
 
 		/**
@@ -182,9 +182,8 @@ public class ChatsFragment extends Fragment {
 		 * 在doInBackground方法执行结束之后在运行，并且运行在UI线程当中 可以对UI空间进行设置
 		 */
 		@Override
-		protected void onPostExecute(List<NewsItemBean> result) {
-			if(result.size()>0)
-				listView.setAdapter(new NewsListViewAdapter(mMainActivity, result));
+		protected void onPostExecute(String result) {
+			listView.setAdapter(new NewsListViewAdapter(mMainActivity, dataList));
 			//textView.setText("异步操作执行结束" + result);
 		}
 

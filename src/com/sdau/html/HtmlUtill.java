@@ -33,14 +33,14 @@ public class HtmlUtill {
 	public static List<String> getHotSearch(){
 		List<String> hotSearchs=new ArrayList<String>();
 		Document document = null;
-		String href="http://202.194.143.19/opac/ajax_topten.php";
+		String href="http://202.194.143.19/opac/";
 		try {
 			document = Jsoup.connect(href).get();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Elements hotStrEles=document.getElementsByTag("a");
+		Elements hotStrEles=document.select("#topten a");
 		if(hotStrEles.size()>0){
 			for (Element e : hotStrEles) { 
 				hotSearchs.add(e.text());
@@ -207,30 +207,28 @@ public class HtmlUtill {
 		Document document = null;
 		try {
 			document = Jsoup.connect(html).get();
-			Elements es = document.getElementsByTag("li");
-			NewsItemBean item = null;
-			String date = "", date_nian = "", date_yr = "";// href="";
-			for (Element e : es) {
-				date = e.getElementsByTag("em").text();
-				date_nian = date.substring(1, 5);
-				date_yr = date.substring(6, date.length() - 2).replace("ÔÂ", "-");
-				item = new NewsItemBean(date_nian, date_yr, e.getElementsByClass("title").text(),
-						e.getElementsByTag("a").attr("href"));
-				// Map<String, String> map = new HashMap<String, String>();
-				// map.put("title", e.getElementsByClass("title").text());
-				/*
-				 * map.put("href", "http://www.baidu.com" +
-				 * e.getElementsByTag("a").attr("href"));
-				 */
-				datalist.add(item);
-			}
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		Elements es = document.getElementsByTag("li");
+		NewsItemBean item = null;
+		String date = "", date_nian = "", date_yr = "";// href="";
+		for (Element e : es) {
+			date = e.getElementsByTag("em").text();
+			date_nian = date.substring(1, 5);
+			date_yr = date.substring(6, date.length() - 2).replace("ÔÂ", "-");
+			item = new NewsItemBean(date_nian, date_yr, e.getElementsByClass("title").text(),
+					e.getElementsByTag("a").attr("href"));
+			// Map<String, String> map = new HashMap<String, String>();
+			// map.put("title", e.getElementsByClass("title").text());
+			/*
+			 * map.put("href", "http://www.baidu.com" +
+			 * e.getElementsByTag("a").attr("href"));
+			 */
+			datalist.add(item);
+		}
 		return datalist;
-		
 	}
 
 	public String getHtmlString(String urlString) {

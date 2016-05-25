@@ -76,14 +76,14 @@ public class MainActivity extends FragmentActivity
 		mChatsIconView.setOnClickListener(this);
 		mTabIconIndicator.add(mChatsIconView);
 		mChatsIconView.setIconAlpha(1.0f);
-		
-		mDiscoverIconView = (GradientIconView) findViewById(R.id.id_iconfont_faxian);
-		mDiscoverIconView.setOnClickListener(this);
-		mTabIconIndicator.add(mDiscoverIconView);
 
 		mContactsIconView = (GradientIconView) findViewById(R.id.id_iconfont_friend);
 		mContactsIconView.setOnClickListener(this);
 		mTabIconIndicator.add(mContactsIconView);
+
+		mDiscoverIconView = (GradientIconView) findViewById(R.id.id_iconfont_faxian);
+		mDiscoverIconView.setOnClickListener(this);
+		mTabIconIndicator.add(mDiscoverIconView);
 
 		mAboutMeIconView = (GradientIconView) findViewById(R.id.id_iconfont_me);
 		mAboutMeIconView.setOnClickListener(this);
@@ -93,14 +93,14 @@ public class MainActivity extends FragmentActivity
 		mTvChats.setOnClickListener(this);
 		mTabTextIndicator.add(mTvChats);
 		mTvChats.setTextViewAlpha(1.0f);
-		
-		mTvDiscover = (GradientTextView) findViewById(R.id.id_discover_tv);
-		mTvDiscover.setOnClickListener(this);
-		mTabTextIndicator.add(mTvDiscover);
 
 		mTvContacts = (GradientTextView) findViewById(R.id.id_contacts_tv);
 		mTvContacts.setOnClickListener(this);
 		mTabTextIndicator.add(mTvContacts);
+
+		mTvDiscover = (GradientTextView) findViewById(R.id.id_discover_tv);
+		mTvDiscover.setOnClickListener(this);
+		mTabTextIndicator.add(mTvDiscover);
 
 		mTvAboutMe = (GradientTextView) findViewById(R.id.id_about_me_tv);
 		mTvAboutMe.setOnClickListener(this);
@@ -273,15 +273,15 @@ public class MainActivity extends FragmentActivity
 			break;
 		case R.id.id_iconfont_friend:
 		case R.id.id_contacts_tv:
-			mTabIconIndicator.get(2).setIconAlpha(1.0f);
-			mTabTextIndicator.get(2).setTextViewAlpha(1.0f);
-			mViewPager.setCurrentItem(2, false);
-			break;
-		case R.id.id_iconfont_faxian:
-		case R.id.id_discover_tv:
 			mTabIconIndicator.get(1).setIconAlpha(1.0f);
 			mTabTextIndicator.get(1).setTextViewAlpha(1.0f);
 			mViewPager.setCurrentItem(1, false);
+			break;
+		case R.id.id_iconfont_faxian:
+		case R.id.id_discover_tv:
+			mTabIconIndicator.get(2).setIconAlpha(1.0f);
+			mTabTextIndicator.get(2).setTextViewAlpha(1.0f);
+			mViewPager.setCurrentItem(2, false);
 			break;
 		case R.id.id_iconfont_me:
 		case R.id.id_about_me_tv:
