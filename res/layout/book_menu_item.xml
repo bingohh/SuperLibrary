@@ -72,66 +72,6 @@
                 android:layout_height="20dp"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="10dp"
-                android:text="出版："
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                android:textStyle="italic"
-                android:typeface="serif" />
-
-            <TextView
-                android:id="@+id/tv_bookinfo_chuban"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:gravity="left|center_vertical"
-                android:text="1995/作家出版社"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                android:textStyle="italic"
-                android:typeface="serif" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="20dp"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="10dp"
-                android:text="书号："
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                android:textStyle="italic"
-                android:typeface="serif" />
-
-            <TextView
-                android:id="@+id/tv_snum"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:gravity="left|center_vertical"
-                android:text="I207.42/L353"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                android:textStyle="italic"
-                android:typeface="serif" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="20dp"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="10dp"
                 android:text="馆藏："
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp"
@@ -158,19 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_book"
-        android:layout_marginBottom="15dp" >
-
-        <Button
-            android:id="@+id/button1"
-            style="@drawable/btn_bookitem"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_bookitem"
-            android:focusable="false"
-            android:text="馆藏"
-            android:textColor="#FFF"
-            android:textSize="15sp" />
+        android:layout_marginBottom="10dp" >
 
         <Button
             android:id="@+id/button2"
@@ -179,7 +107,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_bookitem"
             android:focusable="false"
-            android:text="加书单"
+            android:text="移除书单"
             android:textColor="#FFF"
             android:textSize="15sp" />
 

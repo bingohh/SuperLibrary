@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sdau.superlibrary.R;
+import com.sdau.activity.BorrowBookActivity;
 import com.sdau.activity.MainActivity;
 import com.sdau.activity.NewsInfoActivity;
 import com.sdau.activity.SearchBookActivity;
@@ -46,6 +47,7 @@ public class ChatsFragment extends Fragment {
 	private ListView listView;
 	List<NewsItemBean> dataList = null;
 	private ImageView searchBookImg;
+	private ImageView BorrowBookImg;
 
 	// TODO: Rename and change types of parameters
 	private String mParam1;
@@ -117,6 +119,7 @@ public class ChatsFragment extends Fragment {
 			}
 
 		});
+		//馆藏查询
 		searchBookImg=(ImageView)messageLayout.findViewById(R.id.img_search);
 		searchBookImg.setOnClickListener(new OnClickListener() {
 			
@@ -125,6 +128,19 @@ public class ChatsFragment extends Fragment {
 				// TODO Auto-generated method stub
 				Intent intent =new Intent();
 				intent.setClass(getContext(), SearchBookActivity.class);
+				startActivity(intent);
+			}
+		});
+		
+		//借阅续借
+		BorrowBookImg=(ImageView)messageLayout.findViewById(R.id.img_lend);
+		BorrowBookImg.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent =new Intent();
+				intent.setClass(getContext(), BorrowBookActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -155,7 +171,7 @@ public class ChatsFragment extends Fragment {
 		mListener = null;
 	}
 
-	class NewsLoadAsyncTask extends AsyncTask<String, Integer, String> {
+	class NewsLoadAsyncTask extends AsyncTask<String, Integer, List<NewsItemBean>> {
 
 		/*
 		 * public NewsLoadAsyncTask(MainActivity mMainActivity,ListView
@@ -170,11 +186,11 @@ public class ChatsFragment extends Fragment {
 		 * 但是可以调用publishProgress方法触发onProgressUpdate对UI进行操作
 		 */
 		@Override
-		protected String doInBackground(String... params) {
-			dataList = new ArrayList<NewsItemBean>();
+		protected List<NewsItemBean> doInBackground(String... params) {
+			//dataList = new ArrayList<NewsItemBean>();
 			//
 			dataList = HtmlUtill.getNewsList("");
-			return dataList.size() + "";
+			return dataList;
 		}
 
 		/**
@@ -182,8 +198,9 @@ public class ChatsFragment extends Fragment {
 		 * 在doInBackground方法执行结束之后在运行，并且运行在UI线程当中 可以对UI空间进行设置
 		 */
 		@Override
-		protected void onPostExecute(String result) {
-			listView.setAdapter(new NewsListViewAdapter(mMainActivity, dataList));
+		protected void onPostExecute(List<NewsItemBean> result) {
+			if(result.size()>0)
+				listView.setAdapter(new NewsListViewAdapter(mMainActivity, result));
 			//textView.setText("异步操作执行结束" + result);
 		}
 

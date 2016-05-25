@@ -10,6 +10,10 @@ public class BookItemBean {
     public String snum;
     public String booknum;
     public String href;
+    public String borrowdate;
+    public String returndate;
+    public String renewtime;
+    public String position;
 
     public BookItemBean(String bookname,String author, String chuban,String snum,String booknum,String href) {
         this.bookname = bookname;

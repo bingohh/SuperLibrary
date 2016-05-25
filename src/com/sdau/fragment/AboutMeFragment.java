@@ -3,6 +3,8 @@ package com.sdau.fragment;
 import java.io.IOException;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 
@@ -10,6 +12,9 @@ import com.sdau.superlibrary.R;
 import com.sdau.activity.MainActivity;
 import com.sdau.activity.NewsInfoActivity;
 import com.sdau.activity.UserLoginActivity;
+import com.sdau.adapter.BookListViewAdapter;
+import com.sdau.adapter.BookMenuListAdapter;
+import com.sdau.bean.BookItemBean;
 import com.sdau.httpclient.PersistentCookieStore;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -27,6 +32,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -54,6 +60,8 @@ public class AboutMeFragment extends Fragment {
     private ImageView img1;
     private ImageView user_logo;
     private TextView tv1;
+    private ListView listView;
+	List<BookItemBean> dataList = null;
 
     private OnFragmentInteractionListener mListener;
 
@@ -92,6 +100,24 @@ public class AboutMeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
     	View aboutMeLayout = inflater.inflate(R.layout.fragment_about_me, container, false);
+    	listView = (ListView)aboutMeLayout.findViewById(R.id.lv_mybookmenu);
+    	dataList=new ArrayList<BookItemBean>();
+    	BookItemBean item=new BookItemBean();
+    	item.bookname="小王子";
+    	item.author="(法)安托万·德·圣埃克苏佩里著 ";
+    	item.booknum="馆藏复本：6 可借复本：1";
+    	dataList.add(item);
+    	item=new BookItemBean();
+    	item.bookname="Android开发实例大全 ";
+    	item.author="王东华等编著 ";
+    	item.booknum="馆藏复本：3 可借复本：0";
+    	dataList.add(item);
+    	item=new BookItemBean();
+    	item.bookname="追风筝的人 ";
+    	item.author="(美) 卡勒德·胡赛尼著";
+    	item.booknum="馆藏复本：9 可借复本：1";
+    	dataList.add(item);
+    	listView.setAdapter(new BookMenuListAdapter(getActivity(), dataList));
     	//user_logo=(ImageView)aboutMeLayout.findViewById(R.id.user_logo_img);
     	/*user_logo.setOnClickListener(new OnClickListener() {
 			

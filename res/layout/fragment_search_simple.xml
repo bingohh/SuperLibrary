@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sdau.fragment.AboutMeFragment">
+    tools:context="com.sdau.fragment.AboutMeFragment" >
 
     <!-- TODO: Update blank com.david.wechatsample.fragment layout -->
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
@@ -24,30 +24,43 @@
             android:hint="书名/作者"
             android:padding="10dp"
             android:singleLine="true" >
-
         </com.sdau.edittext.ClearEditText>
 
         <Button
             android:id="@+id/btn_search_simple"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/et_search_simple"
+            android:layout_height="45dp"
+            android:layout_gravity="right"
             android:layout_marginRight="5dp"
             android:layout_marginTop="15dp"
             android:background="#45C01A"
-            android:text="查询" />
+            android:text="查询"
+            android:textColor="#FFF" />
 
-        <TextView
-            android:id="@+id/tv_simple"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical" 
-			android:singleLine="false"
-			android:layout_below="@+id/btn_search_simple"
-            android:text="TextView" />
-        
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_kwflow_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:singleLine="false"
+                android:text="大家都在搜："
+                android:textSize="18sp" />
+
+            <com.kris.search.KeywordsFlow
+                android:id="@+id/kwflow_simple"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="100dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" >
+
+            </com.kris.search.KeywordsFlow>
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>

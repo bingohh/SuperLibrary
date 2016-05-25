@@ -35,7 +35,6 @@
         <activity
             android:name="com.sdau.activity.SearchBookActivity"
             android:label="@string/title_activity_search_book" >
-            
         </activity>
         <activity
             android:name="com.sdau.activity.BookListActivity"
@@ -45,6 +44,10 @@
         <activity
             android:name="com.sdau.activity.BookInfoActivity"
             android:label="@string/title_activity_book_info" >
+        </activity>
+        <activity
+            android:name="com.sdau.activity.BorrowBookActivity"
+            android:label="@string/title_activity_borrow_renew" >
         </activity>
     </application>
 

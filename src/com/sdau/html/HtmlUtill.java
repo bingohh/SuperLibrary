@@ -12,8 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.util.ByteArrayBuffer;
 import org.apache.http.util.EncodingUtils;
+import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,6 +28,7 @@ import com.sdau.bean.BookInfoBean;
 import com.sdau.bean.BookItemBean;
 import com.sdau.bean.BookListData;
 import com.sdau.bean.NewsItemBean;
+import com.sdau.httpclient.MyHttpClient;
 
 import android.graphics.BitmapFactory;
 
@@ -30,17 +36,65 @@ public class HtmlUtill {
 
 	public static String bookNum = "";
 	
+	public static BookListData  getBorrowBooks(String html) {
+		BookListData booklistdata=new BookListData();
+		List<BookItemBean> datalist = new ArrayList<BookItemBean>();
+		HttpPost httpPost = new HttpPost(html);
+		HttpResponse httpResponse = null;
+		try {
+			httpResponse = MyHttpClient.getSafeHttpClient().execute(httpPost);
+			if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				HttpEntity entity = httpResponse.getEntity();
+				if (entity != null) {
+					String result = EntityUtils.toString(entity, "UTF-8");
+					Document document = Jsoup.parse(result);
+					Elements tableEles=document.getElementsByClass("table_line");
+					if(tableEles != null && tableEles.size()>0){
+						Elements trs=tableEles.get(0).getElementsByTag("tr");
+						BookItemBean item=null;
+						String []temp=null;
+						for (int i=1;i<trs.size();i++) { 
+							Elements tds=trs.get(i).getElementsByTag("td");
+							item=new BookItemBean();
+							item.snum=tds.get(0).text();
+							temp=tds.get(1).text().split("/");
+							item.bookname=temp[0];
+							item.author=temp[1];
+							item.borrowdate=tds.get(2).text();
+							item.returndate=tds.get(3).text();
+							item.renewtime=tds.get(4).text();
+							item.position=tds.get(5).text();
+							datalist.add(item);
+						}
+						booklistdata.setBookList(datalist);
+					}
+					Element bookcountEle=document.getElementById("mylib_content");
+					if(bookcountEle != null ){
+						Elements blueEles = bookcountEle.getElementsByClass("blue");
+//						String booknum = "当前借阅"+blueEles.get(0).text()+"本/最大可借阅"+blueEles.get(1).text()+"本";
+						String booknum = blueEles.get(0).text()+"/"+blueEles.get(1).text();
+						booklistdata.setBookNum(booknum);
+					}
+				}
+			} 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return booklistdata;
+	}
+	
 	public static List<String> getHotSearch(){
 		List<String> hotSearchs=new ArrayList<String>();
 		Document document = null;
-		String href="http://202.194.143.19/opac/";
+		String href="http://202.194.143.19/opac/ajax_topten.php";
 		try {
 			document = Jsoup.connect(href).get();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Elements hotStrEles=document.select("#topten a");
+		Elements hotStrEles=document.getElementsByTag("a");
 		if(hotStrEles.size()>0){
 			for (Element e : hotStrEles) { 
 				hotSearchs.add(e.text());
@@ -207,28 +261,30 @@ public class HtmlUtill {
 		Document document = null;
 		try {
 			document = Jsoup.connect(html).get();
+			Elements es = document.getElementsByTag("li");
+			NewsItemBean item = null;
+			String date = "", date_nian = "", date_yr = "";// href="";
+			for (Element e : es) {
+				date = e.getElementsByTag("em").text();
+				date_nian = date.substring(1, 5);
+				date_yr = date.substring(6, date.length() - 2).replace("月", "-");
+				item = new NewsItemBean(date_nian, date_yr, e.getElementsByClass("title").text(),
+						e.getElementsByTag("a").attr("href"));
+				// Map<String, String> map = new HashMap<String, String>();
+				// map.put("title", e.getElementsByClass("title").text());
+				/*
+				 * map.put("href", "http://www.baidu.com" +
+				 * e.getElementsByTag("a").attr("href"));
+				 */
+				datalist.add(item);
+			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Elements es = document.getElementsByTag("li");
-		NewsItemBean item = null;
-		String date = "", date_nian = "", date_yr = "";// href="";
-		for (Element e : es) {
-			date = e.getElementsByTag("em").text();
-			date_nian = date.substring(1, 5);
-			date_yr = date.substring(6, date.length() - 2).replace("月", "-");
-			item = new NewsItemBean(date_nian, date_yr, e.getElementsByClass("title").text(),
-					e.getElementsByTag("a").attr("href"));
-			// Map<String, String> map = new HashMap<String, String>();
-			// map.put("title", e.getElementsByClass("title").text());
-			/*
-			 * map.put("href", "http://www.baidu.com" +
-			 * e.getElementsByTag("a").attr("href"));
-			 */
-			datalist.add(item);
-		}
 		return datalist;
+		
 	}
 
 	public String getHtmlString(String urlString) {

@@ -15,7 +15,7 @@
         android:background="@drawable/tv_bookname_shape"
         android:gravity="center_vertical"
         android:paddingBottom="10dp"
-        android:paddingLeft="15dp"
+        android:paddingLeft="20dp"
         android:paddingRight="15dp"
         android:paddingTop="10dp"
         android:text="酩酊国"
@@ -29,8 +29,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/tv_bookname"
         android:background="#FFFFFF"
-        android:orientation="vertical"
-        android:padding="2dp" >
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,10 +38,9 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="60dp"
+                android:layout_width="75dp"
                 android:layout_height="20dp"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="10dp"
+                android:gravity="right|center_vertical"
                 android:text="作者："
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp"
@@ -68,41 +66,10 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="60dp"
+                android:layout_width="75dp"
                 android:layout_height="20dp"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="10dp"
-                android:text="出版："
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                android:textStyle="italic"
-                android:typeface="serif" />
-
-            <TextView
-                android:id="@+id/tv_bookinfo_chuban"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:gravity="left|center_vertical"
-                android:text="1995/作家出版社"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                android:textStyle="italic"
-                android:typeface="serif" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="20dp"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="10dp"
-                android:text="书号："
+                android:gravity="right|center_vertical"
+                android:text="条码号："
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp"
                 android:textStyle="italic"
@@ -128,23 +95,80 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="60dp"
+                android:layout_width="75dp"
                 android:layout_height="20dp"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="10dp"
-                android:text="馆藏："
+                android:gravity="right|center_vertical"
+                android:text="借阅日期："
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp"
                 android:textStyle="italic"
                 android:typeface="serif" />
 
             <TextView
-                android:id="@+id/tv_booknum"
+                android:id="@+id/tv_borrowdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:gravity="left|center_vertical"
-                android:text="馆藏：5 可借：5"
+                android:text="2016-05-10"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:typeface="serif" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="20dp"
+                android:gravity="right|center_vertical"
+                android:text="应还日期："
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/tv_returndate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="left|center_vertical"
+                android:text="2016-07-11"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:typeface="serif" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="20dp"
+                android:gravity="right|center_vertical"
+                android:text="馆藏地："
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/tv_bookposition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="left|center_vertical"
+                android:text="本部"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp"
                 android:textStyle="italic"
@@ -158,28 +182,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_book"
-        android:layout_marginBottom="15dp" >
+        android:layout_marginBottom="10dp" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btn_renew"
             style="@drawable/btn_bookitem"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/btn_bookitem"
             android:focusable="false"
-            android:text="馆藏"
-            android:textColor="#FFF"
-            android:textSize="15sp" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_bookitem"
-            android:focusable="false"
-            android:text="加书单"
+            android:text="续借"
             android:textColor="#FFF"
             android:textSize="15sp" />
 

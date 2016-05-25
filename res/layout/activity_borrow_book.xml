@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sdau.activity.BorrowBookActivity" >
+
+    <TextView
+        android:id="@+id/tv_borrow_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light"
+        android:padding="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="当前借阅"
+        android:textColor="#303942"
+        android:textSize="18sp"
+        android:typeface="serif" />
+
+    <ListView
+        android:id="@+id/lv_borrow_book"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv_borrow_num"
+        android:background="#FFF" >
+
+    </ListView>
+
+</RelativeLayout>

@@ -16,7 +16,8 @@
     <string name="me">我的</string>
     <string name="title_activity_user_login">超级图书馆</string>
     <string name="title_activity_search_book">馆藏查询</string>
-    <string name="title_activity_book_list">BookListActivity</string>
-    <string name="title_activity_book_info">BookInfoActivity</string>
+    <string name="title_activity_book_list">书籍列表</string>
+    <string name="title_activity_book_info">书籍详情</string>
+    <string name="title_activity_borrow_renew">借阅/续借</string>
 
 </resources>

@@ -2,20 +2,31 @@ package com.sdau.activity;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import com.sdau.httpclient.MyHttpClient;
 import com.sdau.superlibrary.R;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
@@ -57,17 +68,17 @@ public class UserLoginActivity extends Activity {
 	private ImgAsyncTask asyncTask;
 
 	private SharedPreferences sp;
-	
+
 	private Context lActivity;
-	//private static OkHttpClient mOkHttpClient;
-	
+	// private static OkHttpClient mOkHttpClient;
+
 	private String COOKIE;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_login);
-		lActivity=this;
+		lActivity = this;
 		// 验证码
 		img_checkCode = (ImageView) findViewById(R.id.img_checkcode);
 		tv_msg = (TextView) findViewById(R.id.tv_testInfo);
@@ -100,11 +111,11 @@ public class UserLoginActivity extends Activity {
 				// TODO Auto-generated method stub
 				String account = et_account.getText().toString();
 				String password = et_password.getText().toString();
-				String checkcode=et_checkcode.getText().toString();
+				String checkcode = et_checkcode.getText().toString();
 				if (TextUtils.isEmpty(account) || TextUtils.isEmpty(password) || TextUtils.isEmpty(checkcode)) {
 					tv_msg.setText("帐号、密码或者验证码不能为空");
 					Toast.makeText(getApplicationContext(), "帐号、密码或者验证码不能为空", Toast.LENGTH_LONG).show();
-				}else{
+				} else {
 					// 检查用户是否勾选了 记住密码的选项。
 					// 说明勾选框被选中了。把用户名和密码给记录下来
 					// 获取到一个参数文件的编辑器。
@@ -113,41 +124,61 @@ public class UserLoginActivity extends Activity {
 					editor.putString("password", password);
 					// 把数据给保存到sp里面
 					editor.commit();
-					//Toast.makeText(getApplicationContext(), "用户信息已经保存", 1).show();
-					Log.d("TAG", "account:"+account);
-					Log.d("TAG", "password:"+password);
-					Log.d("TAG", "checkcode:"+checkcode);
-					RequestBody formBody = new FormEncodingBuilder()
-						      .add("number", account)
-						      .add("passwd", password)
-						      .add("captcha", checkcode)
-						      .add("select", "cert_no")
-						      .build();
-					LoginAsyncTask lac=new LoginAsyncTask();
-					lac.execute(formBody);
+					// Toast.makeText(getApplicationContext(), "用户信息已经保存",
+					// 1).show();
+					Log.d("TAG", "account:" + account);
+					Log.d("TAG", "password:" + password);
+					Log.d("TAG", "checkcode:" + checkcode);
+					
+					 //需要把参数放到NameValuePair  
+			         List<NameValuePair> paramPairs = new ArrayList<NameValuePair>(); 
+			         paramPairs.add(new BasicNameValuePair("number", account));  
+			         paramPairs.add(new BasicNameValuePair("passwd", password));  
+			         paramPairs.add(new BasicNameValuePair("captcha", checkcode));  
+			         paramPairs.add(new BasicNameValuePair("select", "cert_no"));  
+			         UrlEncodedFormEntity entitydata;
+					try {
+						entitydata = new UrlEncodedFormEntity(paramPairs, HTTP.UTF_8);
+						LoginAsyncTask ansyncTask = new LoginAsyncTask();
+						ansyncTask.execute(entitydata);
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}  
+					/*
+					 * RequestBody formBody = new
+					 * FormEncodingBuilder().add("number",
+					 * account).add("passwd", password) .add("captcha",
+					 * checkcode).add("select", "cert_no").build();
+					 */
+					
 				}
 			}
 		});
 
 	}
-	
-	class LoginAsyncTask extends AsyncTask<RequestBody, Integer, String> {
+
+	class LoginAsyncTask extends AsyncTask<UrlEncodedFormEntity, Integer, String> {
 		/**
 		 * 这里的Integer参数对应AsyncTask中的第一个参数 这里的String返回值对应AsyncTask的第三个参数
 		 * 该方法并不运行在UI线程当中，主要用于异步操作，所有在该方法中不能对UI当中的空间进行设置和修改
 		 * 但是可以调用publishProgress方法触发onProgressUpdate对UI进行操作
 		 */
 		@Override
-		protected String doInBackground(RequestBody... params) {
-			OkHttpClient client = new OkHttpClient();
-			/*client.setCookieHandler(
-					new CookieManager(new PersistentCookieStore(getApplicationContext()), CookiePolicy.ACCEPT_ALL));*/
-			Log.d("TAG", "COOKIE:"+COOKIE);
-			Request request = new Request.Builder().url("http://202.194.143.19/reader/redr_verify.php").header("Cookie", "PHPSESSID="+COOKIE).post(params[0]).build();
+		protected String doInBackground(UrlEncodedFormEntity... params) {
+			HttpPost httpPost = new HttpPost("http://202.194.143.19/reader/redr_verify.php");
+			httpPost.setEntity(params[0]);
+			HttpResponse httpResponse = null;
 			try {
-				Response response = client.newCall(request).execute();
-				if (response.isSuccessful()) {
-					return response.body().string();
+				httpResponse = MyHttpClient.getSafeHttpClient().execute(httpPost);
+				if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+					HttpEntity entity = httpResponse.getEntity();
+					if (entity != null) {
+						String result = EntityUtils.toString(entity, "UTF-8");
+						return result;
+					}else{
+						return "failure";
+					}
 				} else {
 					return "failure";
 				}
@@ -163,23 +194,22 @@ public class UserLoginActivity extends Activity {
 		 */
 		@Override
 		protected void onPostExecute(String html) {
-			
+
 			tv_msg.setMovementMethod(ScrollingMovementMethod.getInstance());
-			String username="";
+			String username = "";
 			Document document = Jsoup.parse(html);
 			username = document.select(".header_right_font font").text();
-			//username=es.select("font").text();
-			if(!TextUtils.isEmpty(username)){
+			if (!TextUtils.isEmpty(username)) {
 				Intent intent = new Intent();
-				Toast.makeText(lActivity, username+"同学，欢迎使用本软件~", Toast.LENGTH_LONG).show();
+				Toast.makeText(lActivity, username + "同学，欢迎使用本软件~", Toast.LENGTH_LONG).show();
 				intent.setClass(lActivity, MainActivity.class);
 				startActivity(intent);
-			}else{
-				String alert =document.select("#left_tab font").text();
+			} else {
+				String alert = document.select("#left_tab font").text();
 				Toast.makeText(lActivity, alert, Toast.LENGTH_LONG).show();
 				tv_msg.setText(alert);
 			}
-			
+
 		}
 
 		// 该方法运行在UI线程当中,并且运行在UI线程当中 可以对UI空间进行设置
@@ -195,7 +225,7 @@ public class UserLoginActivity extends Activity {
 		 */
 		@Override
 		protected void onProgressUpdate(Integer... values) {
-			//int vlaue = values[0];
+			// int vlaue = values[0];
 		}
 
 	}
@@ -208,35 +238,19 @@ public class UserLoginActivity extends Activity {
 		 */
 		@Override
 		protected Bitmap doInBackground(String... params) {
-			HttpClient client = new DefaultHttpClient();
-			HttpPost httpPost = new HttpPost("http://202.194.143.19/reader/captcha.php");
+			HttpGet httpget = new HttpGet("http://202.194.143.19/reader/captcha.php");//以get方式请求该URL
 			HttpResponse httpResponse = null;
 			try {
-				httpResponse = client.execute(httpPost);
+				httpResponse = MyHttpClient.getSafeHttpClient().execute(httpget);//response.getEntity()
+				return BitmapFactory.decodeStream(httpResponse.getEntity().getContent());
 			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			COOKIE = ((AbstractHttpClient) client).getCookieStore().getCookies().get(0).getValue();
-			//Log.d("TAG", "COOKIE:"+COOKIE);
-			byte[] bytes = null;
-			try {
-				bytes = EntityUtils.toByteArray(httpResponse.getEntity());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-			Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length); 
-			return bitmap; 
-			/*try {
-				return BitmapFactory.decodeStream(new URL("http://202.194.143.19/reader/captcha.php").openStream());
+				return null;
 			} catch (IOException e) {
 				e.printStackTrace();
 				return null;
-			}*/
+			}
+
 		}
 
 		/**
@@ -297,7 +311,7 @@ public class UserLoginActivity extends Activity {
 		 */
 		@Override
 		protected void onProgressUpdate(Integer... values) {
-			//int vlaue = values[0];
+			// int vlaue = values[0];
 			// progressBar.setProgress(vlaue);
 		}
 

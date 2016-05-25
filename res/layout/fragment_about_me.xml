@@ -12,15 +12,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="#FFF"
             android:padding="@dimen/base_padding" >
 
             <com.sdau.circleview.CircleImageView
+                android:id="@+id/circleview"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
                 android:layout_centerInParent="true"
                 android:src="@drawable/personlogo"
                 app:border_color="@color/light"
@@ -30,21 +32,52 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="50dp"
+                android:layout_toRightOf="@+id/circleview"
                 android:text="刘芳"
                 android:textColor="#303942"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="40dp"
                 android:src="@drawable/myqrcode" />
+        </RelativeLayout>
 
-        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light"
+                android:padding="10dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="我的书单"
+                android:textColor="#303942"
+                android:textSize="18sp"
+                android:typeface="serif" />
+
+            <ListView
+                android:id="@+id/lv_mybookmenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/textView2"
+                android:background="#FFF" >
+
+            </ListView>
+
+        </RelativeLayout>
     </LinearLayout>
 
 </FrameLayout>
